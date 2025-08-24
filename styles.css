@@ -1,0 +1,134 @@
+/* ベース */
+:root {
+  --bg:#f5f5f7;       /* メイン背景を白寄りに */
+  --bg-alt:#e0e2eb;   /* セクション別背景 */
+  --card:#d1d6f0;     /* カード背景 */
+  --text:#1a1a1a;     /* 文字色は黒っぽく */
+  --muted:#c46f6f;    /* 補助テキスト */
+  --brand:#9fc8ff;    /* メインブランドカラー */
+  --brand-2:#7fc0d6;  /* サブブランドカラー */
+  --danger:#ff6b6b;
+  --ok:#3ddc97;
+}
+
+
+* { box-sizing: border-box; }
+html, body { margin:0; padding:0; }
+body {
+  background: 
+    radial-gradient(circle at 50% 20%, rgba(255, 255, 255, 0.312), transparent 70%),
+    linear-gradient(180deg, #f9f9fb, #e9ecf36d 80%, #dcdfe8);
+  color: #000000; /* 白背景に合わせて文字は濃く */
+}
+
+
+/* レイアウト */
+.container { width:min(1100px, 92%); margin-inline:auto; }
+.section { padding: 72px 0; }
+.section.alt { background: var(--bg-alt); }
+.grid { display:grid; gap:16px; }
+.grid.logos { grid-template-columns: repeat(auto-fit, minmax(140px,1fr)); margin-top:16px; }
+
+/* ヘッダ */
+.site-header {
+  position: sticky; top:0; z-index:10;
+  background: rgba(115, 115, 161, 0.7); backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.header-inner { display:flex; align-items:center; justify-content:space-between; padding:12px 0; }
+.brand { display:flex; gap:10px; align-items:center; color:var(--text); text-decoration:none; font-weight:800; }
+.brand-text { letter-spacing: .5px; }
+.nav-toggle { display:none; background:none; border:1px solid rgba(255,255,255,.2); color:var(--text); padding:6px 10px; border-radius:10px; }
+.nav ul { list-style:none; display:flex; gap:18px; padding:0; margin:0; }
+.nav a { color: var(--muted); text-decoration: none; font-weight:600; }
+.nav a:hover, .nav a:focus { color: var(--text); }
+
+/* スキップリンク */
+.skip-link { position:absolute; left:-999px; top:auto; width:1px; height:1px; overflow:hidden; }
+.skip-link:focus { left: 12px; top: 12px; width:auto; height:auto; padding:8px 12px; background:var(--brand); color:#000; border-radius:8px; }
+
+/* ヒーロー */
+.hero { padding: 72px 0 40px; }
+.hero-inner { display:grid; gap:24px; grid-template-columns: 1.1fr .9fr; align-items:center; }
+.label { color: var(--brand-2); font-weight:800; letter-spacing:.08em; }
+h1 { font-size: clamp(28px, 4.2vw, 56px); margin: 6px 0 10px; line-height:1.1; }
+.sub { color: var(--muted); margin: 0 0 18px; }
+.cta-row { display:flex; gap:12px; flex-wrap:wrap; }
+.btn { display:inline-flex; align-items:center; gap:8px; padding:10px 16px; border-radius:12px; background:transparent; border:1px solid rgba(30, 26, 26, 0.2); color:var(--text); text-decoration:none; font-weight:700; }
+.btn.primary { background: linear-gradient(90deg, var(--brand), var(--brand-2)); color:#0f0f11; border:none; }
+.btn:hover { transform: translateY(-1px); }
+
+.hero-media { position:relative; min-height:220px; display:grid; place-items:center; }
+.glow { position:absolute; inset:0; background: radial-gradient(420px 240px at 50% 50%, rgba(110,168,255,.25), transparent); filter: blur(16px); }
+.card.stat {
+  position:relative; z-index:1; background: var(--card); padding:18px; border:1px solid rgba(255,255,255,.1);
+  border-radius:16px; min-width: 220px; text-align:center; box-shadow: 0 10px 30px rgba(0,0,0,.3);
+}
+.stat-num { font-size: 36px; font-weight:800; letter-spacing:.04em; }
+.stat-label { color: var(--muted); font-size:14px; }
+
+/* 見出し/バッジ */
+h2 { font-size: clamp(22px, 3vw, 32px); margin: 0 0 10px; }
+.lead { color: var(--muted); }
+.badge { display:inline-block; padding:2px 8px; border-radius:999px; background: rgba(0, 0, 0, 0.15); color:var(--brand-2); font-weight:700; font-size:12px; }
+
+/* メンバー */
+#member-grid { grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); margin-top:18px; }
+.member-card {
+  background: var(--card); border:1px solid rgba(255, 255, 255, 0.162); border-radius:16px; padding:14px;
+}
+.member-card h3 { margin:6px 0 4px; font-size:18px; }
+.role { color: var(--muted); font-size: 13px; }
+.pill { display:inline-block; padding:2px 8px; border:1px solid rgba(255,255,255,.18); border-radius:999px; font-size:12px; color:var(--muted); }
+
+/* 実績タイムライン */
+.timeline { list-style:none; padding:0; margin:8px 0 0; border-left:2px solid rgba(255,255,255,.12); }
+.timeline li { padding:10px 12px 10px 14px; margin-left:10px; position:relative; }
+.timeline li::before {
+  content:""; position:absolute; left:-10px; top:18px; width:12px; height:12px; border-radius:50%;
+  background: var(--brand);
+  box-shadow: 0 0 0 4px rgba(110,168,255,.15);
+}
+.timeline .title { font-weight:700; }
+.timeline .meta { color: var(--muted); font-size: 13px; }
+
+/* スポンサー */
+.logo-card {
+  display:grid; place-items:center; aspect-ratio: 3 / 2; border-radius:16px;
+  border:1px dashed rgba(0, 0, 0, 0.98); color:var(--muted); font-weight:800; background: rgba(255,255,255,.03);
+}
+.card.pitch { margin-top:16px; background: var(--card); border:1px solid rgba(255,255,255,.1); border-radius:16px; padding:16px; }
+.check { padding-left:18px; }
+.check li { margin:6px 0; }
+
+/* フォーム */
+.form { max-width: 640px; }
+.field { margin-bottom:12px; }
+label { display:block; margin-bottom:6px; font-weight:700; }
+input, textarea {
+  width:100%; padding:10px 12px; background:#383d51; color:var(--text);
+  border:1px solid rgb(0, 0, 0); border-radius:12px;
+}
+input:focus, textarea:focus { outline:2px solid var(--brand); }
+.error { color: var(--danger); font-size: 12px; }
+.form-note { color: var(--muted); font-size:13px; }
+
+/* フッタ */
+.site-footer { padding: 24px 0; border-top:1px solid rgba(255, 255, 255, 0.548); background: #0a0b0f; }
+.footer-inner { display:flex; gap:12px; align-items:center; justify-content:space-between; flex-wrap:wrap; }
+.footer-nav a { color: var(--muted); margin-right:10px; text-decoration:none; }
+.footer-nav a:hover { color: var(--text); }
+
+/* レスポンシブ */
+@media (max-width: 880px) {
+  .hero-inner { grid-template-columns: 1fr; }
+  .nav-toggle { display:inline-block; }
+  .nav { display:none; }
+  .nav.open { display:block; }
+  .nav ul { flex-direction:column; background: rgba(11,11,15,.95); padding:12px; border-radius:12px; }
+}
+.logo-img {
+  height: 70px;
+  width: auto;
+  margin-right: 9px;
+}

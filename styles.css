@@ -127,6 +127,10 @@ input:focus, textarea:focus { outline:2px solid var(--brand); }
   .nav.open { display:block; }
   .nav ul { flex-direction:column; background: rgba(11,11,15,.95); padding:12px; border-radius:12px; }
 }
+.nav-toggle {
+  font-size: 24px;   /* ハンバーガー文字サイズ */
+  padding: 10px 16px; /* ボタンの大きさ */
+}
 .logo-img {
   height: 70px;
   width: auto;
